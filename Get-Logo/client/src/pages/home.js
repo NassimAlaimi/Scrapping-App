@@ -31,7 +31,7 @@ const Home = () => {
       <FormWrapper onSubmit={handleSubmit}>
       <Title>My Scraping App</Title>
         <Label>
-          URL:
+          URL :
           <Input type="text" value={url} onChange={(e) => setUrl(e.target.value)} />
         </Label>
         <Button type="submit">Submit</Button>
