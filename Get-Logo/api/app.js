@@ -23,7 +23,6 @@ app.post('/', async (req, res) => {
     const response = await axios.get(url);
     const $ = cheerio.load(response.data);
     const logo = $('head link[rel="icon"]').attr('href') || $('head link[rel="shortcut icon"]').attr('href');
-    console.log('logo:', logo);
     res.json({ logo });
   } catch (error) {
     console.error(error);
