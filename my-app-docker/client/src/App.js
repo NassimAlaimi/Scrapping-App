@@ -3,6 +3,7 @@ import React, { useState } from 'react';
 function App() {
   const [url, setUrl] = useState('');
   const [response, setResponse] = useState('');
+  const [logo, setLogo] = useState('');
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -13,9 +14,15 @@ function App() {
       body: JSON.stringify({ url })
     };
 
-    const response = await fetch('http://localhost:4000/', requestOptions);
-    const data = await response.json();
-    setResponse(data.message);
+    try {
+      const response = await fetch('http://localhost:4000/', requestOptions);
+      const data = await response.json();
+      setResponse(data.message);
+      setLogo(data.logo);
+    } catch (error) {
+      console.error(error);
+      setResponse('An error occurred');
+    }
   };
 
   return (
@@ -27,7 +34,9 @@ function App() {
         </label>
         <button type="submit">Submit</button>
       </form>
+      <br/>
       {response && <div>Server response: {response}</div>}
+      {logo && <img src={logo} alt="Logo" />}
     </div>
   );
 }
