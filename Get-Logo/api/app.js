@@ -25,7 +25,7 @@ app.post('/', async (req, res) => {
     const logo = $('head link[rel="icon"]').attr('href') || $('head link[rel="shortcut icon"]').attr('href');
     const title = $('head title').text();
     const description = $('meta[name="description"]').attr('content');
-    res.json({ logo, title, description, link });
+    res.json({ logo, title, description});
   } catch (error) {
     console.error(error);
     res.status(500).json({ error: 'An error occurred' });
