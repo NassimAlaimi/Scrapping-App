@@ -3,7 +3,6 @@ import { Wrapper, Title, FormWrapper, Label, Input, Button, ResponseWrapper, Log
 
 const Home = () => {
   const [url, setUrl] = useState('');
-
   const [title, setTitle] = useState('');
   const [description, setDescription] = useState('');
   const [logo, setLogo] = useState('');
@@ -30,19 +29,25 @@ const Home = () => {
 
   return (
     <Wrapper>
-      <FormWrapper onSubmit={handleSubmit}>
-        <Title>My Scraping App</Title>
-        <Label>
-          URL :
-          <Input type="text" value={url} onChange={(e) => setUrl(e.target.value)} />
-        </Label>
-        <Button type="submit">Submit</Button>
-      </FormWrapper>
-      <ResponseWrapper>
-        {title && <h2>{title}</h2>}
-        {description && <p>{description}</p>}
-        {logo && <Logo src={logo} alt="Logo" />}
-      </ResponseWrapper>
+      {title || description || logo ? null : (
+        <FormWrapper onSubmit={handleSubmit}>
+          <Title>My Scraping App</Title>
+          <Label>
+            URL :
+            <Input type="text" value={url} onChange={(e) => setUrl(e.target.value)} />
+          </Label>
+          <Button type="submit">Submit</Button>
+        </FormWrapper>
+      )}
+      {title || description || logo ? (
+        <ResponseWrapper>
+          {title && <h2>{title}</h2>}
+          {description && <p>{description}</p>}
+          {logo && <Logo src={logo} alt="Logo" />}
+          <br />
+          <Button onClick={() => { setTitle(''); setDescription(''); setLogo(''); }}>Ok</Button>
+        </ResponseWrapper>
+      ) : null}
     </Wrapper>
   );
 };
