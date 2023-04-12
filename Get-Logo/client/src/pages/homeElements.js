@@ -71,14 +71,6 @@ export const Button = styled.button`
   }
 `;
 
-export const Message = styled.div`
-  font-size: 1rem;
-  font-weight: 400;
-  color: ${(props) => (props.success ? 'green' : 'red')};
-  text-align: center;
-  margin-top: 1rem;
-`;
-
 export const Logo = styled.img`
   max-width: 100%;
   height: auto;
@@ -87,4 +79,17 @@ export const Logo = styled.img`
   border: 2px solid #000;
   padding: 10px;
   box-sizing: border-box;
+`;
+
+export const ResponseWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  max-width: 400px;
+  background-color: #f8f8f8;
+  border-radius: 10px;
+  padding: 2rem;
+  margin-top: 1rem;
 `;

@@ -23,7 +23,9 @@ app.post('/', async (req, res) => {
     const response = await axios.get(url);
     const $ = cheerio.load(response.data);
     const logo = $('head link[rel="icon"]').attr('href') || $('head link[rel="shortcut icon"]').attr('href');
-    res.json({ logo });
+    const title = $('head title').text();
+    const description = $('meta[name="description"]').attr('content');
+    res.json({ logo, title, description, link });
   } catch (error) {
     console.error(error);
     res.status(500).json({ error: 'An error occurred' });
